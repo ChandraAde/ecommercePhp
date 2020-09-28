@@ -221,7 +221,7 @@ $cmr = new Customer();
                                     <div class="main_nav_menu">
                                         <ul class="standard_dropdown main_nav_dropdown">
                                             <li><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
-                                            <li class="hassubs"> <a href="#">Top Brands</a>
+                                            <li class="hassubs"> <a href="allproduct.php">All Products</a>
                                             </li>
                                             <?php
                                             $cmrId = Session::get("cmrId");
