@@ -34,7 +34,7 @@ if (isset($delProduct)) {
     echo $delProduct;
 }
   ?>
-                <table class="table">
+                <table class="table table-responsive">
                     <tr>
                         <th width="5%">Sl</th>
                         <th width="30%">Product Name</th>

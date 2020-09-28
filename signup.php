@@ -109,58 +109,66 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 <body>
     <div class="container login-container">
         <div class="row">
+            <div class="col-md-3">
+            </div>
             <div class="col-md-6 login-form-1">
                 <?php
-                if (isset($custLogin)) {
-                    echo $custLogin;
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
+                    $customerReg = $cmr->customerRegistration($_POST);
                 }
                 ?>
-                <a href="index.php"><i class="fas fa-home">Home</i></a>
+                <div class="register_account">
 
-                <h3>Login</h3>
-                <form action="" method="post">
-                    <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="Your Email *" value="" />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="pass" class="form-control" placeholder="Your Password *" value="" />
-                    </div>
-                    <div class="form-group">
-                        <!-- <input type="submit" class="btnSubmit" value="Login" /> -->
-                        <button class="btnSubmit" name="login">Login</button>
-                    </div>
-                    <div class="form-group">
-                        <a href="#" class="ForgetPwd">Forget Password?</a>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-6 login-form-2">
-                <div style="margin-bottom: 100px;"></div>
+                    <a href="index.php"><i class="fas fa-home">Home</i></a>
+                    <?php
+                    if (isset($customerReg)) {
+                        echo $customerReg;
+                    }
+                    ?>
+                    <h3>Daftar</h3>
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Nama Anda *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control" placeholder="Email Anda *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="pass" class="form-control" placeholder="Password Anda *" value="" />
+                        </div>
+                        <input type="hidden" name="country" class="form-control" placeholder="Password Anda *" value="Indonesia" />
+                        <div class="form-group">
+                            <textarea type="text" name="address" class="form-control" placeholder="Alamat lengkap Anda *" value="" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="city" class="form-control" placeholder="Kota Anda *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="phone" class="form-control" placeholder="Nomor Telepon / Hp Anda *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="zip" class="form-control" placeholder="Kode Poss Anda *" value="" />
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <!-- <input type="submit" class="btnSubmit" value="Login" /> -->
+                            <button class="btnSubmit" name="register">Create New Account</button>
+                        </div>
+                        <div class="form-group">
+                            <a href="login.php" class="ForgetPwd">Sudah terdaftar? Login Sekarang</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <!-- <div style="margin-bottom: 100px;"></div>
                 <h3>Belum terdaftar ?</h3>
                 <div class="d-flex justify-content-center">
-                    <a class="btn  btn-primary" style="border-radius: 50px;" href="signup.php">Daftar Sekarang</a>
+                <button class="btn  btn-primary" style="border-radius: 50px;">Daftar Sekarang</button>
 
+                </div> -->
                 </div>
-                <!-- <h3>Login for Form 2</h3>
-                    
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Email *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Login" />
-                        </div>
-                        <div class="form-group">
-
-                            <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
-                        </div>
-                    </form> -->
             </div>
         </div>
-    </div>
 </body>
 
 </html>

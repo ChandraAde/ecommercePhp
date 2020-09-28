@@ -70,7 +70,6 @@ $cmr = new Customer();
 
                                 <div class="top_bar_user">
 
-                                    <div class="user_icon"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918647/user.svg" alt=""></div>
                                     <!-- <div><a href="#">Register</a></div> -->
                                     <!-- <div><a href="#">Sign in</a></div> -->
                                     <?php
@@ -90,7 +89,18 @@ $cmr = new Customer();
                                         <?php
                                         } else {
                                         ?>
+                                            <?php
+                                            $id = Session::get("cmrId");
+                                            $getData = $cmr->getCustomerData($id);
+                                            if ($getData) {
+                                                while ($result = $getData->fetch_assoc()) {
+                                            ?>
+                                                    <div class="user_icon"><a href="editprofile.php"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918647/user.svg" alt=""></a></div>
+                                                    <span><?php echo $result['name']; ?> | </span>
+                                            <?php }
+                                            } ?>
                                             <a href="?cid=<?php Session::get('cmrId'); ?>">Logout</a>
+
                                         <?php
                                         }
                                         ?>
@@ -137,28 +147,28 @@ $cmr = new Customer();
                         <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                    <div class="wishlist_icon"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918681/heart.png" alt=""></div>
+                                    <div class="wishlist_icon"><a href="wlist.php"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918681/heart.png" alt=""></a></div>
                                     <div class="wishlist_content">
 
-                                        <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                        <div class="wishlist_text"><a href="wlist.php">Wishlist</a></div>
                                         <?php
                                         $cmrId = Session::get("cmrId");
                                         $getwl = $pd->getWlistData($cmrId);
                                         if ($getwl) {
-                                            $row = $getwl->fetch_assoc();
+                                            // $row = $getwl->fetchColumn();
+                                            $row = mysqli_num_rows($getwl)
                                             // echo $row;
                                         ?>
-                                            <div class="wishlist_count"></div>
+                                            <div class="wishlist_count"><?php echo $row ?></div>
                                         <?php
-                                        }
-                                        else {
+                                        } else {
                                         ?>
                                             <div class="wishlist_count">0</div>
                                         <?php
-                                            
+
                                         }
                                         ?>
-                                        
+
                                     </div>
                                 </div> <!-- Cart -->
                                 <div class="cart">
@@ -171,8 +181,10 @@ $cmr = new Customer();
                                             $qty = Session::get("qty");
 
                                         ?>
-                                            <div class="cart_icon"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png" alt="">
-                                                <div class="cart_count"><span><?php echo $qty  ?></span></div>
+                                            <div class="cart_icon">
+                                                <a href="cart.php"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png" alt="">
+                                                    <div class="cart_count"><span><?php echo $qty  ?></span></div>
+                                                </a>
                                             </div>
                                             <div class="cart_content">
                                                 <div class="cart_text"><a href="cart.php">Cart</a></div>
@@ -239,4 +251,70 @@ $cmr = new Customer();
                         </div>
                     </div>
                 </nav> <!-- Menu -->
+                <div class="page_menu">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="page_menu_content">
+                                    <div class="page_menu_search">
+                                        <form action="#"> <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products..."> </form>
+                                    </div>
+                                    <ul class="page_menu_nav">
+                                        <li class="page_menu_item"><a href="index.php">Home<i class="fas fa-chevron-down"></i></a></li>
+                                        <li class="page_menu_item hassubs"> <a href="#">Top Brands</a>
+                                        </li>
+                                        <?php
+                                        $cmrId = Session::get("cmrId");
+                                        $chkOrder = $ct->checkOrder($cmrId);
+                                        if ($chkOrder) {
+                                        ?>
+                                            <!-- <li><a href="orderdetails.php">Order</a></li> -->
+                                            <li class="page_menu_item hassubs"> <a href="#">Order</a>
+                                            <?php
+                                        }
+                                            ?>
+                                            </li>
+
+                                            <li class="page_menu_item"><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                            <?php
+                                            $login = Session::get("cuslogin");
+                                            if ($login == false) {
+                                            ?>
+                                                <li class="page_menu_item">
+                                                    <a href="login.php">Login</a>
+                                                </li>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <?php
+                                                $id = Session::get("cmrId");
+                                                $getData = $cmr->getCustomerData($id);
+                                                if ($getData) {
+                                                    while ($result = $getData->fetch_assoc()) {
+                                                ?>
+                                                        <li class="page_menu_item">
+                                                            <span style="color:white;"><?php echo $result['name']; ?> | <a style="color:white;" href="?cid=<?php Session::get('cmrId'); ?>">Logout</a> </span>
+                                                        </li>
+
+                                                <?php }
+                                                } ?>
+
+
+                                            <?php
+                                            }
+                                            ?>
+                                    </ul>
+                                    <div class="menu_contact">
+                                        <div class="menu_contact_item">
+                                            <div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570
+                                        </div>
+                                        <div class="menu_contact_item">
+                                            <div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </header>

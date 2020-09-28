@@ -10,7 +10,7 @@
   <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
 </div>
 <div class="album py-5 bg-light">
-  <div class="container">
+  <div class="container container-fluid">
     <h1> <span class="label label-default badge badge-secondary">Produk Pilihan</span></h1>
     <div style="margin-top:50px">
 
@@ -29,7 +29,7 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-primary">View</button>
+                    <a type="button" class="btn btn-sm btn-outline-primary" href="detail.php?proId=<?php echo $result['productId']; ?>">View</a>
                     <button type="button" class="btn btn-sm btn-outline-danger">Add to Cart</button>
                   </div>
                   <p><span class="price">$<?php echo $result['price']; ?></span></p>
@@ -46,7 +46,7 @@
   </div>
 </div>
 <div class="album py-5 bg-light">
-  <div class="container">
+  <div class="container-md">
     <h1> <span class="label label-default badge badge-secondary">Produk Baru</span></h1>
     <div style="margin-top:50px">
 
