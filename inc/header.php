@@ -17,6 +17,12 @@ $cat = new Category();
 $cmr = new Customer();
 
 ?>
+<?php
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Pragma: no-cache");
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+  header("Cache-Control: max-age=2592000");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +60,7 @@ $cmr = new Customer();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <div class="super_container">
         <!-- Header -->
-        <header class="header">
+        <!-- <header class="header"> -->
             <!-- Top Bar -->
             <div class="top_bar">
                 <div class="container">
@@ -104,8 +110,6 @@ $cmr = new Customer();
                                         <?php
                                         }
                                         ?>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +192,7 @@ $cmr = new Customer();
                                             </div>
                                             <div class="cart_content">
                                                 <div class="cart_text"><a href="cart.php">Cart</a></div>
-                                                <div class="cart_price"><?php echo "$" . number_format($sum) . ".00" ?></div>
+                                                <div class="cart_price"><?php echo "Rp. " . number_format($sum) . ".00" ?></div>
                                             <?php
                                         } else {
                                             ?>
@@ -229,13 +233,13 @@ $cmr = new Customer();
                                             if ($chkOrder) {
                                             ?>
                                                 <!-- <li><a href="orderdetails.php">Order</a></li> -->
-                                                <li class="hassubs"> <a href="#">Order</a>
+                                                <li class="hassubs"> <a href="orderdetails.php">Order</a>
                                                 <?php
                                             }
                                                 ?>
                                                 </li>
 
-                                                <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                                <li><a href="contact.php">Contact<i class="fas fa-chevron-down"></i></a></li>
                                         </ul>
                                     </div> <!-- Menu Trigger -->
                                     <div class="menu_trigger_container ml-auto">
@@ -317,4 +321,4 @@ $cmr = new Customer();
                         </div>
                     </div>
                 </div>
-        </header>
+        <!-- </header> -->

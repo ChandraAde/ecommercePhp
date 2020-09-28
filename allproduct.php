@@ -24,7 +24,7 @@
                     <a type="button" class="btn btn-sm btn-outline-primary" href="detail.php?proId=<?php echo $result['productId']; ?>">View</a>
                     <button type="button" class="btn btn-sm btn-outline-danger">Add to Cart</button>
                   </div>
-                  <p><span class="price">Rp <?php echo $result['price']; ?></span></p>
+                  <p><span class="price">Rp <?php echo number_format($result['price']); ?></span></p>
                 </div>
 
               </div>
